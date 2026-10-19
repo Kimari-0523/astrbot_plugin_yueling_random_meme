@@ -1,0 +1,10 @@
+name: astrbot_plugin_yueling_random_meme
+display_name: 柚铃随机表情包
+desc: 提到IP自动发图；随机偷群友表情，后台审核分类后入库；本地图库、批量上传与/pig统一管理
+version: v1.7.0
+author: Kimari-0523
+support_platforms:
+  - qq_official
+  - aiocqhttp
+astrbot_version: '>=4.28,<5'
+repo: https://github.com/Kimari-0523/astrbot_plugin_yueling_random_meme

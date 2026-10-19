@@ -1,0 +1,13 @@
+{
+  "enabled": {"description": "启用分类随机表情包", "type": "bool", "default": true},
+  "auto_trigger_enabled": {"description": "群消息提到IP名称自动发图（无需@或指令）", "type": "bool", "default": true, "hint": "匹配已启用分类的作品名、角色名和别名；一句多个IP只发一张；冷却中、同群正在取图或图片源失败时静默跳过。"},
+  "collect_enabled": {"description": "随机偷群友表情包（先进入后台待审核）", "type": "bool", "default": true, "hint": "仅群聊；成功保存后回复“你这个表情包不错，我偷走了”。后台选择分类并审核通过后才用于随机表情。重复图片不重复收集。"},
+  "collect_probability": {"description": "偷表情随机采样概率（0—100%）", "type": "int", "default": 20, "hint": "先随机采样再下载、识别。设为100可测试；识别为普通图片、重复图或冷却中仍会跳过。"},
+  "collect_cooldown_seconds": {"description": "每群偷表情尝试间隔（秒，10—3600）", "type": "int", "default": 120},
+  "collect_group_whitelist": {"description": "允许偷表情的群白名单（留空为全部群）", "type": "list", "default": []},
+  "collect_vision_enabled": {"description": "无平台表情标记时使用模型识图筛选", "type": "bool", "default": true, "hint": "QQ官方接口通常不区分表情包和普通图片。仅将候选图片的低分辨率预览交给已配置模型识别；普通照片、截图或不确定图片跳过。关闭后只收集有明确平台表情标记的图片。"},
+  "collect_provider_id": {"description": "偷表情专用识图提供商ID（留空跟随当前聊天模型）", "type": "string", "default": "", "hint": "所选模型须支持图片输入；不支持、超时或解析失败会静默跳过，不会把普通图片直接入库。"},
+  "cooldown_seconds": {"description": "同一用户抽图冷却（秒，1—60）", "type": "int", "default": 5},
+  "max_cache_mb": {"description": "图片缓存目标上限（MiB，16—512；最近两分钟的图片保留供发送使用）", "type": "int", "default": 128},
+  "disabled_categories": {"description": "禁用分类 ID 或显示名称，例如 yuzusoft、ba、初音未来；留空启用全部", "type": "list", "default": []}
+}
