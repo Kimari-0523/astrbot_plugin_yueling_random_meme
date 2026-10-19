@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>表情包上传</title><link rel="stylesheet" href="./style.css"></head>
+<body>
+<main>
+  <header><div><p class="eyebrow">柚铃随机表情包</p><h1>添加你的表情</h1><p>选好分类，批量上传。群里提到对应名称，就能抽到本地图片。</p></div><span class="badge" id="total">正在读取图库…</span></header>
+  <section class="card" aria-label="偷来的表情待审核">
+    <div class="section-heading"><h2>偷来的表情 · 待审核 <span id="review-count">0</span></h2><button id="review-refresh" class="secondary">刷新待审核</button></div>
+    <p id="collect-settings" class="hint">正在读取偷表情设置…</p>
+    <p class="hint">先选择分类，再点“通过并入库”。审核前不会出现在随机表情中；“忽略”后不再重复收集。可在插件配置调整开关、概率、冷却和识图模型。</p>
+    <p id="review-status" role="status" aria-live="polite"></p>
+    <div id="review-items" class="review-grid"></div>
+    <div class="actions"><button id="review-prev" class="secondary" disabled>上一页待审核</button><span id="review-page">1 / 1</span><button id="review-next" class="secondary" disabled>下一页待审核</button></div>
+  </section>
+  <section class="card">
+    <details id="create-box"><summary>＋ 新增分类</summary>
+      <div class="create-fields">
+        <label for="category-name">分类名称</label><input id="category-name" type="text" maxlength="32" placeholder="例如：某部作品或角色名称">
+        <label for="category-aliases">其他触发词或昵称（选填）</label><textarea id="category-aliases" rows="3" placeholder="用逗号或换行分隔，例如：昵称一，昵称二"></textarea>
+        <p class="hint">分类名称也会作为触发词。创建后先上传图片，群里提到这些名称就能自动发图；无需重载插件。</p>
+        <button id="create-category" type="button">创建分类</button><p id="create-status" role="status" aria-live="polite"></p>
+      </div>
+    </details>
+    <h2>上传到分类</h2>
+    <label for="category">表情分类</label><select id="category" disabled><option>正在加载…</option></select>
+    <p class="hint" id="aliases">正在读取触发词…</p>
+    <div class="picker"><label for="files" class="file-label">批量选择图片</label><input id="files" type="file" accept="image/jpeg,image/png,image/gif,image/webp" multiple aria-label="批量选择图片"><p>JPG · PNG · GIF · WebP，每张最多 8 MiB。动态图保留动画。</p></div>
+    <div class="actions"><button id="upload" disabled>上传到此分类</button><button class="secondary" id="clear" disabled>清空选择</button><span id="selected">还没有选择图片</span></div>
+    <progress id="progress" value="0" max="1" hidden></progress>
+    <p id="status" role="status" aria-live="polite">上传后立即生效，无需重载插件。已有图片会自动跳过。</p>
+    <ul id="queue" class="queue" aria-label="文件上传结果"></ul>
+  </section>
+  <section class="card"><div class="section-heading"><h2>全部分类与图库</h2><button id="refresh" class="secondary">刷新数量</button></div><p class="hint">“本地 0 张”只表示没有本地上传图片，原来的在线图库仍可使用。在线索引是图片地址条数，图片按需获取；有本地图片的分类优先本地发送。禁用的分类不会因上传自动启用。</p><div id="categories" class="categories"></div></section>
+</main>
+<script type="module" src="./app.js"></script>
+</body></html>
